@@ -6,7 +6,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', component: LoginPageComponent, pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'exchange', component: ExchangePageComponent , canActivate:[AuthGuard]},
   { path: 'convert', component: ConvertPageComponent , canActivate:[AuthGuard]},
   { path: 'login', component: LoginPageComponent},

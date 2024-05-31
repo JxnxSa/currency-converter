@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class LoginPageComponent {
   loginForm: FormGroup;
   isLogin = false;
-  errorMessage: string = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     this.loginForm = this.formBuilder.group({
