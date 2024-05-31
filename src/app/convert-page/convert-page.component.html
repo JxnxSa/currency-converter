@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="convert-form">
+    <div class="currency-from">
+      <div class="form-group">
+        <label for="currencySelect">Currency From:</label>
+        <app-currency-select
+          [currencyList]="currencyList"
+          [(selectedCurrency)]="selectedCurrencyFrom"
+          (selectedCurrencyChange)="onCurrencyChange()"
+        ></app-currency-select>
+      </div>
+
+      <div class="form-group">
+        <label for="amountInput">Amount:</label>
+        <input
+          type="number"
+          id="amountInput"
+          placeholder="Amount"
+          [(ngModel)]="amount"
+          class="form-control"
+          (input)="convertCurrency()"
+        />
+      </div>
+    </div>
+    <div class="currency-to">
+      <div class="form-group">
+        <label for="currencySelect">Convert To:</label>
+        <app-currency-select
+          [currencyList]="currencyList"
+          [(selectedCurrency)]="targetCurrency"
+          (selectedCurrencyChange)="onCurrencyChange()"
+        ></app-currency-select>
+      </div>
+
+      <div class="form-group">
+        <label>Converted Amount:</label>
+        <input
+          type="text"
+          [value]="convertedAmount | number : '1.2-2'"
+          class="form-control"
+          readonly
+        />
+      </div>
+    </div>
+  </div>
+  <div *ngIf="exchangeRate && selectedCurrencyFrom && targetCurrency" class="exchange-rate">
+    Exchange Rate: {{ selectedCurrencyFrom }} to {{ targetCurrency }} = {{ exchangeRate }}
+  </div>
+  <div class="row-button">
+    <div class="reset-button">
+      <button (click)="reset()" class="btn-reset">Reset</button>
+    </div>
+  </div>
+</div>

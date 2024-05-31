@@ -1,0 +1,17 @@
+<div class="navbar">
+  <div class="navbar-links">
+    <div class="left-links">
+      <button class="nav-link" *ngIf="!menuOpen" (click)="navigateTo('/exchange')">Exchange</button>
+      <button class="nav-link" *ngIf="!menuOpen" (click)="navigateTo('/convert')">Convert</button>
+    </div>
+    <div class="right-links">
+      <button class="logout-button" *ngIf="!menuOpen" (click)="logout()" type="button">Logout</button>
+    </div>
+  </div>
+  <button class="hamburger" (click)="toggleMenu()">&#9776;</button>
+  <div class="dropdown" [ngClass]="{'show': menuOpen}">
+    <button class="nav-link" *ngIf="menuOpen" (click)="navigateTo('/exchange')">Exchange</button>
+    <button class="nav-link" *ngIf="menuOpen" (click)="navigateTo('/convert')">Convert</button>
+    <button class="logout-button" *ngIf="menuOpen" (click)="logout()" type="button">Logout</button>
+  </div>
+</div>

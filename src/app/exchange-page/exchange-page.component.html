@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="currency-select">
+    <div class="currency-from">
+      <div class="form-group">
+        <label for="currencySelect">Currency:</label>
+        <app-currency-select
+          [currencyList]="currencyList"
+          [(selectedCurrency)]="selectedCurrency"
+          (selectedCurrencyChange)="getDataFetchAll()"
+        ></app-currency-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="currency-table-wrapper">
+    <table class="currency-table">
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container
+          *ngFor="
+            let currency of rates[0]
+              | keyvalue
+              | paginate : { itemsPerPage: 20, currentPage: page }
+          "
+        >
+          <tr
+            *ngIf="
+              !targetCurrency ||
+              targetCurrency === '' ||
+              currency.key === targetCurrency
+            "
+          >
+            <td>
+              <img
+                class="img-flag"
+                src="https://www.xe.com/svgs/flags/{{
+                  currency.key.toLowerCase()
+                }}.static.svg"
+                alt=""
+                onerror="this.onerror=null; this.classList.add('img-flag-placeholder');"
+              />
+              {{ currency.key }}
+            </td>
+            <td>{{ currency.value }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-change">
+    <pagination-controls *ngIf="selectedCurrency" (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>

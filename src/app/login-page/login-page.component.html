@@ -1,0 +1,51 @@
+<!-- <app-navbar></app-navbar> -->
+<div class="container">
+  <h2>Login to . . .</h2>
+  <form [formGroup]="loginForm">
+    <div class="form-row">
+      <label for="inputEmail" class="form-label">Email :</label>
+      <div class="form-input">
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          name="email"
+          id="inputEmail"
+          placeholder="Enter your email..."
+          required
+        />
+        <div class="error-container">
+          <div *ngIf="isLogin && loginForm.get('email')?.invalid" class="error-message">
+            <div *ngIf="loginForm.get('email')?.hasError('required')">Email is required.</div>
+            <div *ngIf="loginForm.get('email')?.hasError('pattern')">Invalid email format</div>
+            <div *ngIf="loginForm.get('email')?.hasError('incorrect')">Incorrect email</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="inputPassword" class="form-label">Password :</label>
+      <div class="form-input">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          name="password"
+          id="inputPassword"
+          placeholder="Enter your password..."
+          required
+        />
+        <div class="error-container">
+          <div *ngIf="isLogin && loginForm.get('password')?.invalid" class="error-message">
+            <div *ngIf="loginForm.get('password')?.hasError('required')">Password is required</div>
+            <div *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 8 characters</div>
+            <div *ngIf="loginForm.get('password')?.hasError('incorrect')">Incorrect password</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <button type="button" class="btn" (click)="login()">Login</button>
+    </div>
+  </form>
+</div>

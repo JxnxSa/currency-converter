@@ -1,0 +1,30 @@
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #00838F ;
+  box-shadow: 0 0 5px rgba(128, 222, 234, 0.5);
+}
+
+img.img-flag {
+  width: 24px;
+  height: auto;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+img.img-flag-placeholder {
+  width: 24px;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.1); 
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
