@@ -8,6 +8,7 @@ import { Rate } from './models/rate';
 })
 export class ServiceService {
   constructor(private http: HttpClient) {}
+  
 
   private api_key = '591331e37b-e8521bf4f2-se50gm';
 

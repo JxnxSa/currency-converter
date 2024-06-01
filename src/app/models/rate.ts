@@ -1,5 +1,5 @@
 export interface Rate {
-    AED: number;
+  AED: number;
   AFN: number;
   ALL: number;
   AMD: number;

@@ -12,7 +12,7 @@ export class ConvertPageComponent implements OnInit {
   selectedCurrencyFrom: string = '';
   currencyList: string[] = [];
   updated: string = '';
-  amount: number = 0;
+  amount: string = '';
   convertedAmount: number | null = null;
   targetCurrency: string = '';
   exchangeRate: number | null = null;
@@ -36,11 +36,10 @@ export class ConvertPageComponent implements OnInit {
     }
   }
 
-  convertData(data: any) {
-    let _data = [];
-    _data.push({
-      ...(data[0].results || ''),
-    });
+  convertData(data: any): Rate[] {
+    let _data: Rate[] = [];
+    _data.push(data[0].results || '');
+    
     return _data;
   }
 
@@ -57,8 +56,13 @@ export class ConvertPageComponent implements OnInit {
       this.targetCurrency
     ) {
       this.exchangeRate = this.rates[0][this.targetCurrency as keyof Rate];
-      if (this.exchangeRate && this.amount > 0) {
-        this.convertedAmount = this.amount * this.exchangeRate;
+      if (this.exchangeRate && this.amount) {
+        const amountNumber = parseFloat(this.amount);
+        if (!isNaN(amountNumber) && amountNumber > 0) {
+          this.convertedAmount = amountNumber * this.exchangeRate;
+        } else {
+          this.convertedAmount = null;
+        }
       } else {
         this.convertedAmount = null;
       }
@@ -67,7 +71,7 @@ export class ConvertPageComponent implements OnInit {
 
   reset() {
     this.selectedCurrencyFrom = '';
-    this.amount = 0;
+    this.amount = '';
     this.targetCurrency = '';
     this.convertedAmount = null;
     this.exchangeRate = null;

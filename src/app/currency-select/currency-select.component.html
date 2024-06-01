@@ -6,12 +6,6 @@
 >
   <option  value="" disabled selected>--Select--</option>
   <option  *ngFor="let currency of currencyList" [value]="currency">
-    <img
-    class="img-flag"
-    src="https://www.xe.com/svgs/flags/{{
-      currency.toLowerCase()
-    }}.static.svg"
-    alt=""
-  />{{ currency}}
+    {{ currency}}
   </option>
 </select>

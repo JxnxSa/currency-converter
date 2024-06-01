@@ -28,15 +28,14 @@ export class ExchangePageComponent implements OnInit {
 
  
 
-  convertData(data: any) {
-    let _data = [];
-
-    _data.push({
-      ...(data[0].results || ''),
-    });
-
+  convertData(data: any): Rate[] {
+    let _data: Rate[] = [];
+    _data.push(data[0].results || '');
+    // console.log(_data);
+    
     return _data;
   }
+
 
   getCurrencyList() {
     this.apiSer.getApiCurrencyList().subscribe(
