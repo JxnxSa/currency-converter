@@ -39,8 +39,15 @@ export class ConvertPageComponent implements OnInit {
   convertData(data: any): Rate[] {
     let _data: Rate[] = [];
     _data.push(data[0].results || '');
-    
+
     return _data;
+  }
+  swapCurrencies() {
+    const temp = this.selectedCurrencyFrom;
+    this.selectedCurrencyFrom = this.targetCurrency;
+    this.targetCurrency = temp;
+    this.getDataFetchAll();
+    this.convertCurrency();
   }
 
   onCurrencyChange() {
