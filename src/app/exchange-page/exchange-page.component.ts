@@ -10,7 +10,7 @@
 // export class ExchangePageComponent implements OnInit {
 //   rates: Rate[] = [];
 //   selectedCurrency: string = '';
-  
+
 //   page = 1;
 //   currencyList: string[] = [];
 //   amount: number = 0;
@@ -26,15 +26,12 @@
 //     });
 //   }
 
- 
-
 //   convertData(data: any): Rate[] {
 //     let _data: Rate[] = [];
 //     _data.push(data[0].results || '');
 
 //     return _data;
 //   }
-
 
 //   getCurrencyList() {
 //     this.apiSer.getApiCurrencyList().subscribe(
@@ -63,7 +60,7 @@ import { Rate } from '../models/rate';
 export class ExchangePageComponent implements OnInit {
   rates: Rate[] = [];
   selectedCurrency: string = '';
-  
+
   page = 1;
   currencyList: string[] = [];
   amount: number = 0;
@@ -72,19 +69,7 @@ export class ExchangePageComponent implements OnInit {
 
   constructor(private apiSer: ServiceService) {}
 
-  // getDataFetchAll() {
-  //   this.apiSer.getApiFetchAll(this.selectedCurrency).subscribe(
-  //     (res) => {
-  //       this.rates = this.convertData(res);
-  //       console.log(this.rates);
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching exchange rates', error);
-  //     }
-  //   );
-  // }
-
-    getDataFetchAll() {
+  getDataFetchAll() {
     this.apiSer.getApiFetchAll(this.selectedCurrency).subscribe((res) => {
       this.rates = this.convertData([res]);
       console.log(this.rates);
@@ -95,7 +80,7 @@ export class ExchangePageComponent implements OnInit {
     let _data: Rate[] = [];
 
     _data.push(data[0].results || '');
-    
+
     return _data;
   }
 

@@ -51,7 +51,8 @@ export class ServiceService {
     AMD: 'Armenian Dram',
   };
 
-  private api_key = '591331e37b-e8521bf4f2-se50gm';
+  private api_key = 'c0304a6e20-61b88939c6-sehzw7';
+
   getApiFetchAll(
     from: string
   ): Observable<{ results: { [key: string]: number } }> {
