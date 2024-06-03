@@ -29,13 +29,7 @@
               | paginate : { itemsPerPage: 20, currentPage: page }
           "
         >
-          <tr
-            *ngIf="
-              !targetCurrency ||
-              targetCurrency === '' ||
-              currency.key === targetCurrency
-            "
-          >
+          <tr>
             <td>
               <img
                 class="img-flag"
