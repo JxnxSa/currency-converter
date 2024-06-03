@@ -20,26 +20,22 @@ export class ConvertPageComponent implements OnInit {
   constructor(private apiSer: ServiceService) {}
 
   getDataFetchAll() {
-    if (this.selectedCurrencyFrom) {
-      this.apiSer.getApiFetchAll(this.selectedCurrencyFrom).subscribe(
-        (res) => {
-          console.log(res);
-          this.rates = this.convertData([res]);
-          console.log(this.rates);
-
-          this.convertCurrency();
-        },
-        (error) => {
-          console.error('Error fetching exchange rates', error);
-        }
-      );
-    }
+    this.apiSer.getApiFetchAll(this.selectedCurrencyFrom).subscribe(
+      (res) => {
+        console.log(res);
+        this.rates = this.convertData([res]);
+        console.log(this.rates);
+        this.convertCurrency();
+      },
+      (error) => {
+        console.error('Error fetching exchange rates', error);
+      }
+    );
   }
 
   convertData(data: any): Rate[] {
     let _data: Rate[] = [];
     _data.push(data[0].results || '');
-
     return _data;
   }
   swapCurrencies() {

@@ -15,7 +15,6 @@ export class ExchangePageComponent implements OnInit {
   currencyList: string[] = [];
   amount: number = 0;
   convertedAmount: number | null = null;
-
   constructor(private apiSer: ServiceService) {}
 
   getDataFetchAll() {
@@ -27,9 +26,7 @@ export class ExchangePageComponent implements OnInit {
 
   convertData(data: any): Rate[] {
     let _data: Rate[] = [];
-
     _data.push(data[0].results || '');
-
     return _data;
   }
 

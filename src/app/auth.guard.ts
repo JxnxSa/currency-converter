@@ -23,8 +23,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
       const storedEmail = localStorage.getItem('email');
       const storedPassword = localStorage.getItem('password');
-      if (storedEmail && storedPassword) {
-       
+      if (storedEmail && storedPassword) {      
         return true; 
       } else {
         this.router.navigate(['/login']);

@@ -9,9 +9,7 @@ export class CurrencySelectComponent {
   @Input() currencyList: string[] = [];
   @Input() selectedCurrency: string = '';
   @Output() selectedCurrencyChange = new EventEmitter<string>();
-
   onCurrencyChange(newCurrency: string) {
     this.selectedCurrencyChange.emit(newCurrency);
   }
-  
 }

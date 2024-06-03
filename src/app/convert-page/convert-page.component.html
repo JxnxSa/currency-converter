@@ -14,11 +14,14 @@
       <div class="form-group">
         <label for="amountInput">Amount:</label>
         <input
-          type="number"
+          type="text"
           id="amountInput"
           placeholder="Amount"
           [(ngModel)]="amount"
           class="form-control"
+          onkeypress="
+              return (event.charCode !=8 && event.charCode == 0 || (event.charCode >= 48 && event.charCode <= 57))
+              "
           (input)="convertCurrency()"
         />
       </div>
@@ -41,7 +44,7 @@
         <label>Converted Amount:</label>
         <input
           type="text"
-          [value]="convertedAmount | number : '1.2-2'"
+          [value]="convertedAmount "
           class="form-control"
           readonly
         />
