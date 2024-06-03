@@ -43,6 +43,7 @@ export class LoginPageComponent {
       localStorage.setItem('password', inputPassword); 
       this.router.navigate(['/exchange']);
     } else {
+      alert('Email or password is incorrect')
       this.passwordControl?.reset(); 
     }
   }
