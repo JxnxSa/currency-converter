@@ -66,7 +66,6 @@ export class ConvertPageComponent implements OnInit {
     ) {
       this.exchangeRate = this.rates[0][this.targetCurrency as keyof Rate];
       if (this.exchangeRate && this.amount) {
-        this.amount;
         if (!isNaN(this.amount) && this.amount > 0) {
           this.convertedAmount = this.amount * this.exchangeRate;
         } else {
