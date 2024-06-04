@@ -14,20 +14,23 @@
       <div class="form-group">
         <label for="amountInput">Amount:</label>
         <input
-          type="number"
+          type="text"
           id="amountInput"
           placeholder="Amount"
           [(ngModel)]="amount"
           class="form-control"
-          (keydown)="onKeyDown($event)"
           (input)="convertCurrency()"
+          onkeypress="
+            return (event.charCode >= 48 && event.charCode <= 57) || 
+                  (event.charCode == 46 && this.value.indexOf('.') == -1)
+                  "
         />
       </div>
     </div>
     <button class="swap-currency-icon" (click)="swapCurrencies()">
       <span class="material-symbols-outlined">swap_vert</span>
     </button>
-    
+
     <div class="currency-to">
       <div class="form-group">
         <label for="currencySelect">Convert To:</label>
@@ -42,15 +45,19 @@
         <label>Converted Amount:</label>
         <input
           type="text"
-          [value]="convertedAmount "
+          [value]="convertedAmount"
           class="form-control"
           readonly
         />
       </div>
     </div>
   </div>
-  <div *ngIf="exchangeRate && selectedCurrencyFrom && targetCurrency" class="exchange-rate">
-    Exchange Rate: {{ selectedCurrencyFrom }} to {{ targetCurrency }} = {{ exchangeRate }}
+  <div
+    *ngIf="exchangeRate && selectedCurrencyFrom && targetCurrency"
+    class="exchange-rate"
+  >
+    Exchange Rate: {{ selectedCurrencyFrom }} to {{ targetCurrency }} =
+    {{ exchangeRate }}
   </div>
   <div class="row-button">
     <div class="reset-button">
