@@ -63,7 +63,7 @@ export class ServiceService {
       })),
       catchError(() => {
         console.error('API call failed, returning mock data');
-        return of({ results: this.mockDataFetchAll[from]?.results || {} });
+        return of({ results: this.mockDataFetchAll[from]?.results });
       })
     );
   }

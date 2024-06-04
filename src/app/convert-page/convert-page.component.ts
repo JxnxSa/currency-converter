@@ -52,6 +52,12 @@ export class ConvertPageComponent implements OnInit {
     }
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === '-' || event.key === '+') {
+      event.preventDefault();
+    }
+  }
+
   convertCurrency() {
     if (
       this.rates.length > 0 &&

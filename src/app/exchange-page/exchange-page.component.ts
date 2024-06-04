@@ -19,6 +19,8 @@ export class ExchangePageComponent implements OnInit {
 
   getDataFetchAll() {
     this.apiSer.getApiFetchAll(this.selectedCurrency).subscribe((res) => {
+      console.log(res);
+      
       this.rates = this.convertData([res]);
       console.log(this.rates);
     });
