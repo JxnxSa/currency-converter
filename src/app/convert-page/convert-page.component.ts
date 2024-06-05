@@ -42,8 +42,7 @@ export class ConvertPageComponent implements OnInit {
     const temp = this.selectedCurrencyFrom;
     this.selectedCurrencyFrom = this.targetCurrency;
     this.targetCurrency = temp;
-    this.getDataFetchAll();
-    this.convertCurrency();
+    this.onCurrencyChange();
   }
 
   onCurrencyChange() {
