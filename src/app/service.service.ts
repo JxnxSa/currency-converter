@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, map, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -52,15 +52,21 @@ export class ServiceService {
   };
 
   private api_key = 'c0304a6e20-61b88939c6-sehzw7';
+  private fetchAllCache: Record<string, { results: { [key: string]: number } }> = {};
+  private currencyListCache: string[] | null = null;
 
   getApiFetchAll(
     from: string
   ): Observable<{ results: { [key: string]: number } }> {
+    if (this.fetchAllCache[from]) {
+      return of(this.fetchAllCache[from]);
+    }
     const url = `https://api.fastforex.io/fetch-all?from=${from}&api_key=${this.api_key}`;
     return this.http.get<{ results: { [key: string]: number } }>(url).pipe(
-      map((response) => ({
-        results: response.results,
-      })),
+      map((response) => {
+        this.fetchAllCache[from] = { results: response.results };
+        return { results: response.results };
+      }),
       catchError(() => {
         console.error('API call failed, returning mock data');
         return of({ results: this.mockDataFetchAll[from]?.results });
@@ -69,9 +75,16 @@ export class ServiceService {
   }
 
   getApiCurrencyList(): Observable<string[]> {
+    if (this.currencyListCache) {
+      return of(this.currencyListCache);
+    }
     const url = `https://api.fastforex.io/currencies?api_key=${this.api_key}`;
     return this.http.get<{ currencies: { [key: string]: string } }>(url).pipe(
-      map((response) => Object.keys(response.currencies)),
+      map((response) => {
+        const currencyList = Object.keys(response.currencies);
+        this.currencyListCache = currencyList;
+        return currencyList;
+      }),
       catchError(() => {
         console.error('API call failed, returning mock data');
         return of(Object.keys(this.mockCurrencyList));
